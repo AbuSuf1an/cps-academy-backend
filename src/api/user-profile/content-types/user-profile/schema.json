@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_profiles",
+  "info": {
+    "singularName": "user-profile",
+    "pluralName": "user-profiles",
+    "displayName": "User Profile",
+    "description": "Extended user profile with role-based access control"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "role": {
+      "type": "enumeration",
+      "enum": ["NormalUser", "Student", "SocialMediaManager", "Developer"],
+      "required": true,
+      "default": "NormalUser"
+    },
+    "displayName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

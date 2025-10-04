@@ -21,11 +21,12 @@ export default {
         // Only validate if user is being upgraded to Student (not already a Student)
         if (currentProfile && currentProfile.role !== 'Student') {
           // Validate that user has enrolled courses
-          if (!currentProfile.enrolledCourses || currentProfile.enrolledCourses.length === 0) {
+          const enrolledCourses = (currentProfile as any).enrolledCourses;
+          if (!enrolledCourses || enrolledCourses.length === 0) {
             throw new Error('Cannot upgrade to Student role: User must be enrolled in at least one course');
           }
           
-          console.log(`User ${currentProfile.id} upgraded to Student with ${currentProfile.enrolledCourses.length} enrolled courses`);
+          console.log(`User ${currentProfile.id} upgraded to Student with ${enrolledCourses.length} enrolled courses`);
         }
       } catch (error) {
         console.error('Error validating Student role upgrade:', error);

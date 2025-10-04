@@ -48,6 +48,12 @@
       "relation": "oneToMany",
       "target": "api::module.module",
       "mappedBy": "course"
+    },
+    "enrolledUsers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::user-profile.user-profile",
+      "inversedBy": "enrolledCourses"
     }
   }
 }

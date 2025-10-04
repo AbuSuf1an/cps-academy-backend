@@ -17,10 +17,12 @@ module.exports = {
    * run jobs, or perform some special logic.
    */
   async bootstrap({ strapi }) {
-    // Only run seeds in development
+    console.log('🚀 Starting application bootstrap...');
+    
+    // Set up courses and permissions
     if (process.env.NODE_ENV === 'development') {
-      const courseSeeder = require('./database/seeds/course-seeder');
-      await courseSeeder.seed({ strapi });
+      const courseSetup = require('./database/seeds/setup-courses');
+      await courseSetup.seed({ strapi });
     }
   },
 };

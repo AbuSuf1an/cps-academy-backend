@@ -28,6 +28,7 @@ module.exports = {
           `,
           level: 'Beginner',
           isPublic: true,
+          publishedAt: new Date(), // Publish the course
         },
       }),
       strapi.entityService.create('api::course.course', {
@@ -48,6 +49,7 @@ module.exports = {
           `,
           level: 'Advanced',
           isPublic: true,
+          publishedAt: new Date(), // Publish the course
         },
       }),
       strapi.entityService.create('api::course.course', {

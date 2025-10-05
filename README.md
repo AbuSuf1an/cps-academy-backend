@@ -123,3 +123,19 @@ By default, uses SQLite for development. For production, configure PostgreSQL:
 ```env
 DATABASE_URL=postgresql://username:password@localhost:5432/cps_academy
 ```
+
+## Railway Deployment
+
+1. **Create services:** In Railway, create a project, add a PostgreSQL service, then deploy this `backend/` directory (via GitHub connection or `railway up`).
+2. **Configure environment variables** on the Strapi service:
+   - `NODE_ENV=production`
+   - `PORT=${PORT}` and `HOST=0.0.0.0`
+   - `DATABASE_CLIENT=postgres`
+   - `DATABASE_URL=<Railway Postgres connection string>`
+   - `APP_KEYS`, `API_TOKEN_SALT`, `ADMIN_JWT_SECRET`, `JWT_SECRET`, `TRANSFER_TOKEN_SALT`, `ENCRYPTION_KEY` (generate strong random values)
+   - `FRONTEND_URL=https://your-frontend-domain`
+   - Optional: `CORS_ORIGINS` (comma-separated list for extra origins) and any upload provider credentials (S3, Cloudinary, etc.)
+3. **Build/Start commands:** Set build to `npm install && npm run build` and start to `npm run start`.
+4. **First boot:** After deploy, open `https://<railway-domain>/admin` to create the production admin user and configure public permissions.
+
+> Railway storage is ephemeral—configure a persistent upload provider before relying on media uploads.

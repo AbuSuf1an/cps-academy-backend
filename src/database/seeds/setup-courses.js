@@ -72,13 +72,16 @@ module.exports = {
         if (findPermission) {
           await strapi.db.query('plugin::users-permissions.permission').update({
             where: { id: findPermission.id },
-            data: { enabled: true }
+            data: {
+              enabled: true,
+              subject: 'api::course.course',
+            }
           });
         } else {
           await strapi.db.query('plugin::users-permissions.permission').create({
             data: {
               action: 'api::course.course.find',
-              subject: null,
+              subject: 'api::course.course',
               properties: {},
               conditions: [],
               role: publicRole.id,
@@ -90,13 +93,16 @@ module.exports = {
         if (findOnePermission) {
           await strapi.db.query('plugin::users-permissions.permission').update({
             where: { id: findOnePermission.id },
-            data: { enabled: true }
+            data: {
+              enabled: true,
+              subject: 'api::course.course',
+            }
           });
         } else {
           await strapi.db.query('plugin::users-permissions.permission').create({
             data: {
               action: 'api::course.course.findOne',
-              subject: null,
+              subject: 'api::course.course',
               properties: {},
               conditions: [],
               role: publicRole.id,

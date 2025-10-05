@@ -1,0 +1,89 @@
+{
+  "kind": "collectionType",
+  "collectionName": "trainers",
+  "info": {
+    "singularName": "trainer",
+    "pluralName": "trainers",
+    "displayName": "Trainer",
+    "description": "Academy trainers and mentors"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "company": {
+      "type": "string",
+      "required": false,
+      "maxLength": 255
+    },
+    "institution": {
+      "type": "string",
+      "required": false,
+      "maxLength": 255
+    },
+    "position": {
+      "type": "string",
+      "required": false,
+      "maxLength": 255
+    },
+    "achievement1": {
+      "type": "string",
+      "required": false,
+      "maxLength": 500
+    },
+    "achievement2": {
+      "type": "string",
+      "required": false,
+      "maxLength": 500
+    },
+    "achievement3": {
+      "type": "string",
+      "required": false,
+      "maxLength": 500
+    },
+    "codeforcesHandle": {
+      "type": "string",
+      "required": false,
+      "maxLength": 100
+    },
+    "codeforcesRating": {
+      "type": "integer",
+      "required": false
+    },
+    "codeforcesRank": {
+      "type": "string",
+      "required": false,
+      "maxLength": 100
+    },
+    "displayOrder": {
+      "type": "integer",
+      "required": false,
+      "default": 0
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "bio": {
+      "type": "text",
+      "required": false
+    },
+    "socialLinks": {
+      "type": "json",
+      "required": false
+    }
+  }
+}

@@ -21,10 +21,26 @@
       "type": "richtext",
       "required": true
     },
+    "shortDescription": {
+      "type": "text",
+      "required": false,
+      "maxLength": 500
+    },
     "videoUrl": {
       "type": "string",
       "required": false,
       "maxLength": 500
+    },
+    "videoId": {
+      "type": "string",
+      "required": false,
+      "maxLength": 255
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
     },
     "duration": {
       "type": "integer",
@@ -32,7 +48,24 @@
       "default": 0,
       "min": 0
     },
+    "status": {
+      "type": "enumeration",
+      "enum": ["available", "upcoming", "finished"],
+      "required": true,
+      "default": "available"
+    },
+    "difficulty": {
+      "type": "enumeration",
+      "enum": ["Easy", "Medium", "Hard"],
+      "required": false,
+      "default": "Medium"
+    },
     "isFreePreview": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "isCompleted": {
       "type": "boolean",
       "required": true,
       "default": false
@@ -42,6 +75,12 @@
       "required": true,
       "default": 1,
       "min": 1
+    },
+    "watchTime": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "min": 0
     },
     "module": {
       "type": "relation",
@@ -54,6 +93,12 @@
       "relation": "oneToMany",
       "target": "api::topic.topic",
       "mappedBy": "class"
+    },
+    "attachments": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": ["files", "images"]
     }
   }
 }

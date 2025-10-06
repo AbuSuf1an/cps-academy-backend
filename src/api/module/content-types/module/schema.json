@@ -5,7 +5,7 @@
     "singularName": "module",
     "pluralName": "modules",
     "displayName": "Module",
-    "description": "A module contains multiple classes and belongs to a course"
+    "description": "A module contains multiple classes, lessons, and contests"
   },
   "options": {
     "draftAndPublish": true
@@ -21,11 +21,33 @@
       "type": "richtext",
       "required": true
     },
+    "shortDescription": {
+      "type": "text",
+      "required": false,
+      "maxLength": 500
+    },
     "order": {
       "type": "integer",
       "required": true,
       "default": 1,
       "min": 1
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["available", "upcoming", "finished"],
+      "required": true,
+      "default": "available"
+    },
+    "duration": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "min": 0
+    },
+    "isCompleted": {
+      "type": "boolean",
+      "required": true,
+      "default": false
     },
     "course": {
       "type": "relation",
@@ -37,6 +59,18 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::class.class",
+      "mappedBy": "module"
+    },
+    "lessons": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::lesson.lesson",
+      "mappedBy": "module"
+    },
+    "contests": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::contest.contest",
       "mappedBy": "module"
     }
   }

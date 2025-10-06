@@ -6,7 +6,7 @@
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::course.course', {
+const defaultRouter = createCoreRouter('api::course.course', {
   config: {
     find: {
       auth: false, // Allow public access to course list
@@ -31,3 +31,25 @@ module.exports = createCoreRouter('api::course.course', {
     },
   },
 });
+
+const customRoutes = {
+  routes: [
+    {
+      method: 'GET',
+      path: '/courses/slug/:slug',
+      handler: 'course.findBySlug',
+      config: {
+        auth: false,
+        policies: [],
+        middlewares: [],
+      },
+    },
+  ],
+};
+
+module.exports = {
+  routes: [
+    ...defaultRouter.routes,
+    ...customRoutes.routes,
+  ],
+};

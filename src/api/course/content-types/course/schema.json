@@ -26,13 +26,69 @@
       "type": "richtext",
       "required": true
     },
+    "shortDescription": {
+      "type": "text",
+      "required": false,
+      "maxLength": 500
+    },
     "level": {
       "type": "enumeration",
       "enum": ["Beginner", "Intermediate", "Advanced"],
       "required": true,
       "default": "Beginner"
     },
+    "price": {
+      "type": "decimal",
+      "required": true,
+      "default": 0.0,
+      "min": 0
+    },
+    "originalPrice": {
+      "type": "decimal",
+      "required": false,
+      "min": 0
+    },
+    "currency": {
+      "type": "string",
+      "required": true,
+      "default": "BDT",
+      "maxLength": 10
+    },
+    "duration": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "min": 0
+    },
+    "language": {
+      "type": "string",
+      "required": true,
+      "default": "Bangla",
+      "maxLength": 50
+    },
+    "instructor": {
+      "type": "string",
+      "required": false,
+      "maxLength": 255
+    },
+    "instructorTitle": {
+      "type": "string",
+      "required": false,
+      "maxLength": 255
+    },
+    "instructorImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
     "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "bannerImage": {
       "type": "media",
       "multiple": false,
       "required": false,
@@ -42,6 +98,42 @@
       "type": "boolean",
       "required": true,
       "default": true
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "enrollmentCount": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "min": 0
+    },
+    "rating": {
+      "type": "decimal",
+      "required": true,
+      "default": 0.0,
+      "min": 0,
+      "max": 5
+    },
+    "reviewCount": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "min": 0
+    },
+    "tags": {
+      "type": "json",
+      "required": false
+    },
+    "whatYouWillLearn": {
+      "type": "json",
+      "required": false
+    },
+    "requirements": {
+      "type": "json",
+      "required": false
     },
     "modules": {
       "type": "relation",

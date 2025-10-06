@@ -1,0 +1,94 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contests",
+  "info": {
+    "singularName": "contest",
+    "pluralName": "contests",
+    "displayName": "Contest",
+    "description": "A contest/competition for students to participate in"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "instructions": {
+      "type": "richtext",
+      "required": false
+    },
+    "duration": {
+      "type": "integer",
+      "required": true,
+      "default": 60,
+      "min": 1
+    },
+    "maxPoints": {
+      "type": "integer",
+      "required": true,
+      "default": 100,
+      "min": 1
+    },
+    "difficulty": {
+      "type": "enumeration",
+      "enum": ["Easy", "Medium", "Hard"],
+      "required": false,
+      "default": "Medium"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["available", "upcoming", "finished"],
+      "required": true,
+      "default": "available"
+    },
+    "contestType": {
+      "type": "enumeration",
+      "enum": ["practice", "assignment", "quiz", "competition"],
+      "required": true,
+      "default": "practice"
+    },
+    "startDate": {
+      "type": "datetime",
+      "required": false
+    },
+    "endDate": {
+      "type": "datetime",
+      "required": false
+    },
+    "order": {
+      "type": "integer",
+      "required": true,
+      "default": 1,
+      "min": 1
+    },
+    "isCompleted": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "module": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::module.module",
+      "inversedBy": "contests"
+    },
+    "problems": {
+      "type": "richtext",
+      "required": false
+    },
+    "attachments": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": ["files", "images"]
+    }
+  }
+}

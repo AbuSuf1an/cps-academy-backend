@@ -12,14 +12,32 @@ module.exports = createCoreController('api::course.course', ({ strapi }) => ({
     const { data, meta } = await super.find(ctx, {
       populate: {
         thumbnail: true,
+        bannerImage: true,
+        instructorImage: true,
         modules: {
           populate: {
             classes: {
               populate: {
                 topics: true,
+                thumbnail: true,
+                attachments: true,
               },
+              sort: 'order:asc',
+            },
+            lessons: {
+              populate: {
+                attachments: true,
+              },
+              sort: 'order:asc',
+            },
+            contests: {
+              populate: {
+                attachments: true,
+              },
+              sort: 'order:asc',
             },
           },
+          sort: 'order:asc',
         },
       },
       filters: {
@@ -119,5 +137,23 @@ module.exports = createCoreController('api::course.course', ({ strapi }) => ({
     };
 
     return { data: transformedData, meta };
+  },
+
+  // Find course by slug with progress tracking
+  async findBySlug(ctx) {
+    const { slug } = ctx.params;
+    const user = ctx.state.user;
+
+    try {
+      const course = await strapi.service('api::course.course').findBySlug(slug, user?.id);
+      
+      if (!course) {
+        return ctx.notFound('Course not found');
+      }
+
+      return { data: course };
+    } catch (error) {
+      ctx.throw(500, 'Failed to fetch course');
+    }
   },
 }));

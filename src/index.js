@@ -19,10 +19,14 @@ module.exports = {
   async bootstrap({ strapi }) {
     console.log('🚀 Starting application bootstrap...');
     
-    // Set up courses and permissions
+    // Seed database with course data
     if (process.env.NODE_ENV === 'development') {
-      const courseSetup = require('./database/seeds/setup-courses');
-      await courseSetup.seed({ strapi });
+      try {
+        const seedCourses = require('./database/seeds/seed-courses');
+        await seedCourses();
+      } catch (error) {
+        console.error('Failed to seed courses:', error);
+      }
     }
   },
 };

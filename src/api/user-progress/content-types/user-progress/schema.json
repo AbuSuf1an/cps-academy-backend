@@ -1,0 +1,74 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_progresses",
+  "info": {
+    "singularName": "user-progress",
+    "pluralName": "user-progresses",
+    "displayName": "User Progress",
+    "description": "Track user progress on classes, lessons, and contests"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "required": true
+    },
+    "course": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::course.course",
+      "required": true
+    },
+    "module": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::module.module",
+      "required": true
+    },
+    "contentType": {
+      "type": "enumeration",
+      "enum": ["class", "lesson", "contest"],
+      "required": true
+    },
+    "contentId": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "isCompleted": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "completedAt": {
+      "type": "datetime",
+      "required": false
+    },
+    "watchTime": {
+      "type": "integer",
+      "required": false,
+      "default": 0,
+      "min": 0
+    },
+    "score": {
+      "type": "decimal",
+      "required": false,
+      "min": 0
+    },
+    "attempts": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "min": 0
+    },
+    "lastAccessedAt": {
+      "type": "datetime",
+      "required": false
+    }
+  }
+}
